@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 /* Reset básico */
 * {
   margin: 0;
@@ -16,24 +18,21 @@ body {
   justify-content: center;
   padding: 2rem;
   color: #fff;
-}
-
-.container{
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  font-family: "Press Start 2P", system-ui;
 }
 
 .containers-links{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
+  flex-direction: row;
 }
+
+
 .containers-links input{
   margin-right: 20px;
-}
+} 
+
+
+
 
 /* Título */
 h2 {
@@ -121,11 +120,82 @@ button:hover {
   font-family: monospace;
   text-align: center;
 }
+span{
+  margin-right: 6px;
+}
 
 
 .link-item{
   margin: 10px;
 }
+
+
+
+
+
+.container-history {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+  max-width: 100%;
+  transition: 0.3s ease;
+}
+
+.container-history h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.container-history p {
+  color: #000;
+}
+
+.container-history .link-item {
+  background: #fff;
+  border: 1px solid #000;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  word-break: break-all;
+  font-size: 0.9rem;
+  color: #1f2937;
+}
+
+.container-history .copy-icon {
+  cursor: pointer;
+  color: #4f46e5;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.container-history .copy-icon:hover {
+  color: #3730a3;
+}
+
+#limparHistorico {
+  background-color: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background-color 0.3s;
+}
+
+#limparHistorico:hover {
+  background-color: #b91c1c;
+}
+
+
 
 /* Responsivo */
 @media (max-width: 600px) {

@@ -8,14 +8,14 @@ function gerarUTM() {
     document.getElementById('baseUrl4').value.trim(),
     document.getElementById('baseUrl5').value.trim()
   ].filter(url => url !== "");
-
+  
+  const campaignId = document.getElementById('utm_id').value;
   const source = document.getElementById('utmSource').value.trim();
   const medium = document.getElementById('utmMedium').value.trim();
   const campaign = document.getElementById('utmCampaign').value.trim();
-  const campaignId = document.getElementById('utm_id').value;
+  
   const term = document.getElementById('utmTerm').value.trim();
   const content = document.getElementById('utmContent').value.trim();
-  const campaignContent = document.getElementById('utm_content').value.trim(); 
   const pmkt = document.getElementById('pmkt').value;
 
   if (baseUrls.length === 0 || !source || !medium) {
@@ -37,11 +37,12 @@ function gerarUTM() {
 
     try {
       const url = new URL(baseUrl);
-
+      if (campaignId) url.searchParams.set('utm_id', campaignId);
+    
       url.searchParams.set('utm_source', source);
       url.searchParams.set('utm_medium', medium);
-      if (campaign) url.searchParams.set('utm_campaign', campaign);
-      if (campaignId) url.searchParams.set('utm_id', campaignId);
+        if (campaign) url.searchParams.set('utm_campaign', campaign);
+      
       if (term) url.searchParams.set('utm_term', term);
       if (content) {
         url.searchParams.set('utm_content', content);

@@ -1,75 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <title>🔗 Construtor de UTM`s</title>
-  <link rel="icon" type="image/png" sizes="16x16"  href="./img/favicons/favicon-16x16.png">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/png" sizes="16x16" href="./img/favicons/favicon-16x16.png">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
+
 
   <h2>Construtor de UTM</h2>
 
-<div class="container">
 <div class="containers-links">
-<input type="text" id="baseUrl1" placeholder="URL 1 (ex: https://exemplo.com)">
-<input type="text" id="baseUrl2" placeholder="URL 2 (opcional)">
-<input type="text" id="baseUrl3" placeholder="URL 3 (opcional)">
-<input type="text" id="baseUrl4" placeholder="URL 4 (opcional)">
-<input type="text" id="baseUrl5" placeholder="URL 5 (opcional)">
-</div>
- <hr>
-
- <input type="text" id="utm_id" placeholder="campaign id (the ads campaign id)(opcional)">
-  <input type="text" id="utmSource" placeholder="utm_source (ex: google)">
-  <input type="text" id="utmMedium" placeholder="utm_medium (ex: cpc)">
-  <input type="text" id="utmCampaign" placeholder="utm_campaign (ex: promocao_julho) (opcional)">
-  <input type="text" id="utmTerm" placeholder="utm_term (opcional)">
-  <input type="text" id="utmContent" placeholder="utm_content (opcional)">
-  <input type="text" id="utm_content" placeholder="campaign content (opcional)">
-  <label for="pmkt">PMKT:</label>
-<select id="pmkt">
-  <option value="">Selecione...</option>
-  <option value="1"> 1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5"> 5</option>
-  <option value="6">6</option>
-  <option value="7">7</option>
-  <option value="8">8</option>
-  <option value="9">9</option>
-  <option value="10">10</option>
-  <option value="11">11</option>
-  <option value="12">12</option>
-  <option value="13">13</option>
-  <option value="14">14</option>
-  <option value="15">15</option>
-  <option value="16">16</option>
-  <option value="17">17</option>
-  <option value="18">18</option>
-</select>
-
-
-  <button id="gerarUTM">Gerar URL com UTM</button>
-
-  <div class="output" id="urlResultado"></div>
-
+          <input type="text" id="baseUrl1" placeholder="URL 1 (ex: https://exemplo.com)">
+          <input type="text" id="baseUrl2" placeholder="URL 2 (opcional)">
+          <input type="text" id="baseUrl3" placeholder="URL 3 (opcional)">
+          <input type="text" id="baseUrl4" placeholder="URL 4 (opcional)">
+          <input type="text" id="baseUrl5" placeholder="URL 5 (opcional)">
 </div>
 
+        <hr>
 
-<div class="container-links">
-<div class="container-history"></div>
-<button id="limparHistorico">Limpar histórico</button>
-</div>
+        <input type="text" id="utm_id" placeholder="campaign id (the ads campaign id)(opcional)">
+        <input type="text" id="utmSource" placeholder="utm_source (ex: google)">
+        <input type="text" id="utmMedium" placeholder="utm_medium (ex: cpc)">
+        <input type="text" id="utmCampaign" placeholder="utm_campaign (ex: promocao_julho) (opcional)">
+        <input type="text" id="utmTerm" placeholder="utm_term (opcional)">
+        <input type="text" id="utmContent" placeholder="utm_content (opcional)">
+        <label for="pmkt">PMKT:</label>
+        <select id="pmkt">
+          <option value="">Selecione...</option>
+          <option value="1"> 1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5"> 5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+        </select>
 
- <script src="./javascript/script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <button id="gerarUTM">Gerar URL com UTM</button>
+
+        <div class="output" id="urlResultado"></div>
+
+         <div class="container-history">
+         <button id="limparHistorico">Limpar histórico</button> 
+       </div>
+
+
+
+   
+
+
+
+
+  <script src="./javascript/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 
 </body>
+
 </html>
