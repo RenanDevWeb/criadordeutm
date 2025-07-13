@@ -72,6 +72,10 @@ function gerarUTM() {
   `).join('');
 
   exibirHistorico();
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    event: 'gerarUtm'
+  })
 }
 
 // Copiar link ao clicar
