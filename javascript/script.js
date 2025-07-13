@@ -74,7 +74,8 @@ function gerarUTM() {
   exibirHistorico();
   window.dataLayer = window.dataLayer || [];
   dataLayer.push({
-    event: 'gerarUtm'
+    event: 'gerarUtm', 
+    url: outputDiv
   })
 }
 
