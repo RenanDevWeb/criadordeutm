@@ -7,18 +7,15 @@ function gerarUTM() {
     document.getElementById('baseUrl3').value.trim(),
     document.getElementById('baseUrl4').value.trim(),
     document.getElementById('baseUrl5').value.trim()
-  ].filter(url => url !== ""); // remove vazios
+  ].filter(url => url !== "");
 
   const source = document.getElementById('utmSource').value.trim();
   const medium = document.getElementById('utmMedium').value.trim();
   const campaign = document.getElementById('utmCampaign').value.trim();
-  console.log(campaign);
   const campaignId = document.getElementById('utm_id').value;
-  console.log(campaignId); // novo campo
   const term = document.getElementById('utmTerm').value.trim();
-  const content = document.getElementById('utmContent').value.trim(); // campo existente
+  const content = document.getElementById('utmContent').value.trim();
   const campaignContent = document.getElementById('utm_content').value.trim(); 
-  console.log(campaignContent);// novo campo alternativo
   const pmkt = document.getElementById('pmkt').value;
 
   if (baseUrls.length === 0 || !source || !medium) {
@@ -53,7 +50,9 @@ function gerarUTM() {
       }
       if (pmkt) url.searchParams.set('pmkt', pmkt);
 
-      resultados.push(url.toString());
+      const finalUrl = url.toString();
+      resultados.push(finalUrl);
+      salvarNoHistorico(finalUrl);
     } catch (error) {
       resultados.push(`❌ URL inválida: ${baseUrl}`);
     }
@@ -67,20 +66,18 @@ function gerarUTM() {
   });
 
   const outputDiv = document.getElementById('urlResultado');
-  // outputDiv.innerHTML = resultados.map(link => `<div class="link-copy">${link}</div>`).join('');
-outputDiv.innerHTML = resultados.map(link => `
-  <div class="link-item">
-    <span class="link-copy">${link}</span>
-    <span class="copy-icon" data-link="${link}" title="Copiar">📋</span>
-  </div>
-`).join('');
-
+  outputDiv.innerHTML = resultados.map(link => `
+    <div class="link-item">
+      <span class="link-copy">${link}</span>
+      <span class="copy-icon" data-link="${link}" title="Copiar">📋</span>
+    </div>
+  `).join('');
+  exibirHistorico();
 }
 
-// Copiar URL ao clicar
 document.addEventListener('click', function (e) {
-  if (e.target.classList.contains('link-copy')) {
-    const texto = e.target.textContent;
+  if (e.target.classList.contains('link-copy') || e.target.classList.contains('copy-icon')) {
+    const texto = e.target.dataset.link || e.target.textContent;
     copiarTexto(texto);
   }
 });
@@ -105,4 +102,55 @@ function copiarTexto(texto) {
     });
 }
 
-gerarUtmButton.addEventListener('click', gerarUTM);
+function salvarNoHistorico(link) {
+  let historico = JSON.parse(localStorage.getItem('historicoUTM')) || [];
+  if (!historico.includes(link)) {
+    historico.push(link);
+    localStorage.setItem('historicoUTM', JSON.stringify(historico));
+  }
+}
+
+function exibirHistorico() {
+  const historicoContainer = document.querySelector('.container-history');
+  const historico = JSON.parse(localStorage.getItem('historicoUTM')) || [];
+
+  historicoContainer.innerHTML = '<h2>Links criados</h2>'; // limpa e repõe título
+
+  if (historico.length === 0) {
+    historicoContainer.innerHTML += '<p>Sem links no histórico ainda.</p>';
+    return;
+  }
+
+  const lista = historico.map(link => `
+    <div class="link-item">
+      <span class="link-copy">${link}</span>
+      <span class="copy-icon" data-link="${link}" title="Copiar">📋</span>
+    </div>
+  `).join('');
+
+  historicoContainer.innerHTML += lista;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  gerarUtmButton.addEventListener('click', gerarUTM);
+  exibirHistorico();
+
+  const btnLimpar = document.getElementById('limparHistorico');
+  if (btnLimpar) {
+    btnLimpar.addEventListener('click', () => {
+      Swal.fire({
+        title: 'Tem certeza?',
+        text: "Isso vai apagar todos os links salvos.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, apagar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.removeItem('historicoUTM');
+          exibirHistorico();
+        }
+      });
+    });
+  }
+});
