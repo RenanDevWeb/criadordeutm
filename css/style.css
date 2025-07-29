@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-
 /* Reset básico */
 * {
   margin: 0;
@@ -8,84 +6,97 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Fundo com gradiente nas cores CVC */
+/* Fundo e texto */
 body {
   min-height: 100vh;
-  background: linear-gradient(135deg, #003594, #0058a3);
+  background: #f9f9f953;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  color: #fff;
-  font-family: "Press Start 2P", system-ui;
+  color: #222222;
+  font-family: "Ubuntu", system-ui;
 }
 
-.containers-links{
-  display: flex;
-  flex-direction: row;
+/* Container */
+.container {
+  width: 100%;
+  max-width: 720px;
+  background: #ffffffe3;
+  padding: 2rem 2.5rem;
+  border-radius: 22px;
+  border: 1px solid lightgray;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
-
-
-.containers-links input{
-  margin-right: 20px;
-} 
-
-
-
 
 /* Título */
 h2 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   margin-bottom: 2rem;
-  color: #ffd200;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+  color: #002980;
+  font-weight: 700;
+  text-align: center;
 }
 
-/* Estilização dos inputs */
+/* Grupo de inputs lado a lado */
+.containers-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Inputs no grupo de links */
+.containers-links input {
+  flex: 1 1 calc(50% - 1rem);
+  min-width: 280px;
+  padding: 12px 16px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  background: #fff;
+  color: #222222e9;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.containers-links input:last-child {
+  margin-right: 0;
+}
+
+/* Inputs principais */
 input, select {
   width: 100%;
-  max-width: 500px;
+  max-width: 100%;
   padding: 12px 16px;
   margin: 10px 0;
-  border: none;
-  border-radius: 12px;
-  background: rgba(255, 210, 0, 0.15);
-  color: #fff;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  background: #fff;
+  color: #222222;
   font-size: 1rem;
-  backdrop-filter: blur(6px);
-  box-shadow: inset 1px 1px 3px rgba(255, 210, 0, 0.2),
-              1px 1px 8px rgba(0, 0, 0, 0.3);
-  transition: 0.3s;
+  transition: border-color 0.3s;
 }
 
 select {
-  width: 100%;
-  max-width: 500px;
-  padding: 12px 16px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 12px;
-  background: rgba(255, 210, 0, 0.15);
-  color: #000;
-  font-size: 1rem;
-  backdrop-filter: blur(6px);
-  box-shadow: inset 1px 1px 3px rgba(255, 210, 0, 0.2),
-              1px 1px 8px rgba(0, 0, 0, 0.3);
-  transition: 0.3s;
+  color: #222222;
 }
 
+/* Foco nos inputs com azul clarinho */
 input:focus, select:focus {
   outline: none;
-  background: rgba(255, 210, 0, 0.25);
+  background: #fff;
+  border-color: #3399ff;
+  box-shadow: 0 0 8px rgba(102, 178, 255, 0.5);
+  color: #004080;
 }
 
 /* Label para PMKT */
 label {
   margin-top: 1rem;
   display: block;
-  font-weight: bold;
-  color: #ffd200;
+  font-weight: 600;
+  color: #000;
 }
 
 /* Botão */
@@ -94,60 +105,56 @@ button {
   padding: 14px 24px;
   border: none;
   border-radius: 10px;
-  background: #ffd200;
-  color: #003594;
+  background: #2866c3;
+  color: #fff;
   font-size: 1.1rem;
-  font-weight: bold;
+  font-weight: 700;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 210, 0, 0.6);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(245, 214, 122, 0.5);
 }
 
 button:hover {
+  background: #003d99;
   transform: scale(1.05);
-  box-shadow: 0 6px 18px rgba(255, 210, 0, 0.8);
+  box-shadow: 0 6px 18px rgba(245, 214, 122, 0.7);
 }
 
+/* Output */
 .output {
   margin-top: 2rem;
   padding: 20px;
-  max-width: 90%;
-  word-break: break-all;
-  border-radius: 15px;
-  backdrop-filter: blur(6px);
-  color: #ffd200;
+  width: 100%;
+  word-break: break-word;
+  border-radius: 12px;
+  background: #ffffffe0;
+  color: #000;
   font-size: 1rem;
   font-family: monospace;
   text-align: center;
-}
-span{
-  margin-right: 6px;
+  border: 1px solid #0000006d;
 }
 
-
-.link-item{
-  margin: 10px;
-}
-
-
-
-
-
+/* Container histórico */
 .container-history {
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  background: #fff;
+  border: 1px solid #cccccc;
   padding: 1.5rem;
   margin-top: 2rem;
   border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
   max-width: 100%;
   transition: 0.3s ease;
+  color: #000;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .container-history h2 {
   font-size: 1.25rem;
   margin-bottom: 1rem;
-  color: #111827;
+  color: #004080;
+  font-weight: 700;
 }
 
 .container-history p {
@@ -155,51 +162,72 @@ span{
 }
 
 .container-history .link-item {
-  background: #fff;
-  border: 1px solid #000;
+  background: #f9f9f9;
+  border: 1px solid #bbb;
   padding: 0.75rem 1rem;
   border-radius: 8px;
   margin-bottom: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  word-break: break-all;
+  word-break: break-word;
   font-size: 0.9rem;
-  color: #1f2937;
+  color: #000;
+  box-shadow: 0 2px 8px rgba(245, 214, 122, 0.2);
 }
+
 
 .container-history .copy-icon {
   cursor: pointer;
-  color: #4f46e5;
+  color: #0052cc;
   font-size: 1rem;
   transition: color 0.2s;
 }
 
 .container-history .copy-icon:hover {
-  color: #3730a3;
+  color: #f5d67a;
 }
 
+/* Botão limpar histórico */
 #limparHistorico {
-  background-color: #ef4444;
+  background-color: #cc3333;
   color: #fff;
   border: none;
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   margin-bottom: 1rem;
+  width: 100%;
   transition: background-color 0.3s;
 }
 
 #limparHistorico:hover {
-  background-color: #b91c1c;
+  background-color: #990000;
 }
 
 
+.creditos{
+  margin: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.creditos a{
+  display: flex;
+   justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+}
+.creditos img{
+  width: 80px;
+  height: 80px;
+}
 
 /* Responsivo */
-@media (max-width: 600px) {
-  input, select, button {
-    width: 100%;
+@media (max-width: 720px) {
+  .containers-links input {
+    flex: 1 1 100% !important;
   }
 }

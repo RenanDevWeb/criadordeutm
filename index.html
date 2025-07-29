@@ -17,6 +17,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" href="./css/style.css">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -29,7 +30,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 
-
+ <div class="container">
 
   <h2>Construtor de UTM</h2>
 
@@ -44,7 +45,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <hr>
 
         <input type="text" id="utm_id" placeholder="campaign id (the ads campaign id)(opcional)">
-        <input type="text" id="utmSource" placeholder="utm_source (ex: google)">
+        <input list="utmSourceOptions" id="utmSource" name="utmSource" placeholder="utm_source (ex: google)" />
+        <datalist id="utmSourceOptions">
+              <option value="google">
+              <option value="facebook">
+              <option value="instagram">
+              <option value="tiktok">
+        </datalist>
         <input type="text" id="utmMedium" placeholder="utm_medium (ex: cpc)">
         <input type="text" id="utmCampaign" placeholder="utm_campaign (ex: promocao_julho) (opcional)">
         <input type="text" id="utmTerm" placeholder="utm_term (opcional)">
@@ -82,7 +89,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-   
+   </div>
+
+   <div class="creditos">
+    <a href="https://renandevweb.github.io/renanedevweb">
+    <img src="./img/logo.webp" alt="">
+       <p>Criado por 
+        Renan Salmazio</p>
+        </a>
+   </div>
 
 
 
