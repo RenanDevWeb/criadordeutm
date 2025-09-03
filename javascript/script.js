@@ -127,7 +127,7 @@ function exibirHistorico() {
   if (historico.length === 0) {
     historicoContainer.innerHTML += '<p>Sem links no histórico ainda.</p>';
   } else {
-    const lista = historico.map(link => `
+    const lista = historico.reverse().map(link => `
       <div class="link-item">
         <span class="link-copy">${link}</span>
         <span class="copy-icon" data-link="${link}" title="Copiar">📋</span>
