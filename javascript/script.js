@@ -7,6 +7,7 @@ function gerarUTM() {
     document.getElementById('baseUrl3').value.trim(),
     document.getElementById('baseUrl4').value.trim(),
     document.getElementById('baseUrl5').value.trim(),
+    document.getElementById('baseUrl6').value.trim()
   ].filter(url => url !== "");
 
   const campaignId = document.getElementById('utm_id').value.trim();
@@ -15,6 +16,7 @@ function gerarUTM() {
   const campaign = document.getElementById('utmCampaign').value.trim();
   const term = document.getElementById('utmTerm').value.trim();
   const content = document.getElementById('utmContent').value.trim();
+  console.log(content)
   const pmkt = document.getElementById('pmkt').value;
 
   if (baseUrls.length === 0 || !source || !medium) {
