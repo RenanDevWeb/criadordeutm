@@ -6,7 +6,7 @@ function gerarUTM() {
     document.getElementById('baseUrl2').value.trim(),
     document.getElementById('baseUrl3').value.trim(),
     document.getElementById('baseUrl4').value.trim(),
-    document.getElementById('baseUrl5').value.trim()
+    document.getElementById('baseUrl5').value.trim(),
   ].filter(url => url !== "");
 
   const campaignId = document.getElementById('utm_id').value.trim();

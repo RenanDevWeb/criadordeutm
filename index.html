@@ -51,17 +51,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <option value="facebook">
               <option value="instagram">
               <option value="tiktok">
+              <option value="pinterest">
+              <option value="cityads">
         </datalist>
-        <input type="text" id="utmMedium" placeholder="utm_medium (ex: cpc)">
+        <input type="text" id="utmMedium" list="utmMediumOptions" placeholder="utm_medium (ex: cpc)">
+        <datalist id="utmMediumOptions">  
+          <option value="affiliate">
+          <option value="cpa">
+          <option value="cpc">
+        </datalist>
         <input type="text" id="utmCampaign" placeholder="utm_campaign (ex: promocao_julho) (opcional)">
-        
-        <input type="text" list="utmTermOptions" id="utmTerm" placeholder="utm_term (opcional)">
-        <datalist id="utmTermOptions">
-            <option value="cuponomia">
-            <option value="meliuz">
-            <option value="promobit">
+        <input type="text" id="utmTerm" placeholder="utm_term (opcional)">
+        <datalist  id="utmContent" placeholder="utm_content (opcional)">
+              <option value="cuponomia">
+              <option value="meliuz">
+              <option value="promobit">
         </datalist>
-        <input  id="utmContent" placeholder="utm_content (opcional)">
         <label for="pmkt">MMM:</label>
         <select id="pmkt">
           <option value="">Selecione...</option>
