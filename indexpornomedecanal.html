@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Gerar CSV - Lista até fim do ano</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { background: #0b74de; color: #fff; border: 0; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    input { margin: 8px 0; padding: 6px; border: 1px solid #ccc; border-radius: 4px; }
+    pre { background: #f5f5f5; padding: 10px; border-radius: 6px; margin-top: 15px; max-height: 200px; overflow:auto; }
+  </style>
+</head>
+<body>
+  <h1>Gerar CSV até fim do ano</h1>
+  <label for="dateInput">Data inicial (m/d/yyyy):</label><br/>
+  <input id="dateInput" type="text" value="4/1/2025" /><br/><br/>
+  <button id="downloadBtn">Baixar CSV</button>
+
+  <pre id="preview"></pre>
+
+  <script>
+    const channels = [
+      'Paid Growth',
+      'Paid Branding',
+'Direct',
+'Organic Search',
+'Unassigned',
+'CRM',
+'Metabuscadores Core',
+'Social (Organic)',
+'Afiliado Direto (Core)',
+'Redes de Afiliados (no content)'
+    ];
+
+
+
+    function formatDateUS(date) {
+      const m = date.getMonth() + 1;
+      const d = date.getDate();
+      const y = date.getFullYear();
+      return `${m}/${d}/${y}`;
+    }
+
+    function buildCSV(startDateStr) {
+      let rows = [["Date","Channel"]];
+      let startDate = new Date(startDateStr);
+      let endDate = new Date(startDate.getFullYear(), 11, 31); // 12/31/ano
+
+      for (let dt = new Date(startDate); dt <= endDate; dt.setDate(dt.getDate() + 1)) {
+        const dateStr = formatDateUS(dt);
+        channels.forEach(ch => {
+          if (ch === "") {
+            rows.push(["",""]);
+          } else {
+            rows.push([dateStr, ch]);
+          }
+        });
+      }
+      return rows.map(r => r.join(",")).join("\r\n");
+    }
+
+    const dateInput = document.getElementById('dateInput');
+    const previewEl = document.getElementById('preview');
+
+    function updatePreview() {
+      previewEl.textContent = buildCSV(dateInput.value).split("\r\n").slice(0,30).join("\r\n") + "\n...";
+    }
+
+    updatePreview();
+    dateInput.addEventListener('input', updatePreview);
+
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      const csv = buildCSV(dateInput.value);
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `lista_canais_${dateInput.value.replace(/\//g,'-')}_ate_fim_ano.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
