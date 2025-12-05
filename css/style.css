@@ -27,7 +27,7 @@ body {
   padding: 2rem 2.5rem;
   border-radius: 22px;
   border: 1px solid lightgray;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(32, 32, 32, 0.1);
 }
 
 /* Título */
@@ -208,6 +208,10 @@ button:hover {
 }
 .link-copy{
   font-size: .8rem;
+  cursor: pointer;
+}
+.acessar{
+  text-decoration: none;
   cursor: pointer;
 }
 

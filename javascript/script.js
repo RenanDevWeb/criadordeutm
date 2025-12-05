@@ -227,6 +227,7 @@ function exibirHistorico() {
       <div class="link-item">
         <span class="link-copy">${link.link}</span>
         <span class="copy-icon" data-link="${link}" title="Copiar">📋</span>
+        <a  class="Acessar" href="${link.link}" title="acessar" target="_blank" rel="noopener noreferrer">🔗</a>
       </div>
     `).join('');
     historicoContainer.innerHTML += lista;
