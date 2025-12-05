@@ -221,7 +221,7 @@ function exibirHistorico() {
   `;
 
   if (historico.length === 0) {
-    historicoContainer.innerHTML += '<p>Sem links no histórico ainda.</p>';
+    historicoContainer.innerHTML += '<p class="alinhado">Sem links no histórico ainda.</p>';
   } else {
     const lista = historico.reverse().map(link => `
       <div class="link-item">
