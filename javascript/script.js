@@ -53,6 +53,8 @@ function gerarUTM() {
       if (pmkt) url.searchParams.set('pmkt', pmkt);
 
       const finalUrl = url.toString();
+      console.log(finalUrl)
+  
       resultados.push(finalUrl);
       salvarNoHistorico(finalUrl);
     } catch (error) {
@@ -60,12 +62,33 @@ function gerarUTM() {
     }
   }
 
-  Swal.fire({
-    title: 'Link(s) gerado com sucesso!',
-    icon: 'success',
-    timer: 1500,
-    showConfirmButton: false
-  });
+       Swal.fire({
+  title: "Link(s) gerado com sucesso!",
+  icon: 'success',
+  timer: 1300,
+ showConfirmButton: false,
+  showClass: {
+    popup: `
+      animate__animated
+      animate__fadeInUp
+      animate__faster
+    `
+  },
+  hideClass: {
+    popup: `
+      animate__animated
+      animate__fadeOutDown
+      animate__faster
+    `
+  }
+});
+
+  // Swal.fire({
+  //   title: 'Link(s) gerado com sucesso!',
+  //   icon: 'success',
+  //   timer: 2000,
+  //   showConfirmButton: false
+  // });
 
   const outputDiv = document.getElementById('urlResultado');
   outputDiv.innerHTML = resultados.map(link => `
@@ -94,19 +117,48 @@ document.addEventListener('click', function (e) {
 function copiarTexto(texto) {
   navigator.clipboard.writeText(texto)
     .then(() => {
+
       Swal.fire({
         title: 'Copiado!',
         text: 'A URL foi copiada para a área de transferência.',
         icon: 'success',
         timer: 1500,
-        showConfirmButton: false
+        showConfirmButton: false,
+        showClass: {
+    popup: `
+      animate__animated
+      animate__fadeInUp
+      animate__faster
+    `
+  },
+  hideClass: {
+    popup: `
+      animate__animated
+      animate__fadeOutDown
+      animate__faster
+    `
+  }
       });
     })
     .catch(() => {
       Swal.fire({
         title: 'Erro',
         text: 'Não foi possível copiar.',
-        icon: 'error'
+        icon: 'error',
+        showClass: {
+    popup: `
+      animate__animated
+      animate__fadeInUp
+      animate__faster
+    `
+  },
+  hideClass: {
+    popup: `
+      animate__animated
+      animate__fadeOutDown
+      animate__faster
+    `
+  }
       });
     });
 }
@@ -193,7 +245,21 @@ function ativarBotaoLimpar() {
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Sim, apagar',
-        cancelButtonText: 'Cancelar'
+        cancelButtonText: 'Cancelar',
+        showClass: {
+    popup: `
+      animate__animated
+      animate__fadeInUp
+      animate__faster
+    `
+  },
+  hideClass: {
+    popup: `
+      animate__animated
+      animate__fadeOutDown
+      animate__faster
+    `
+  }
       }).then((result) => {
         if (result.isConfirmed) {
           localStorage.removeItem('historicoUTM');
