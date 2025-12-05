@@ -3,6 +3,7 @@ const dataAtual = formatarData()
 
 
 
+
 function gerarUTM() {
   const baseUrls = [
     document.getElementById('baseUrl1').value.trim(),
@@ -216,7 +217,7 @@ function exibirHistorico() {
   const historico = JSON.parse(localStorage.getItem('historicoUTM')) || [];
 
   historicoContainer.innerHTML = `
-    <h2>Links criados</h2>
+    <h2>Links criados</h2> <div><i class="fa-solid fa-file-excel excel_download exportar"></i></div>
     <button id="limparHistorico">Limpar histórico</button>
   `;
 
@@ -276,3 +277,106 @@ document.addEventListener('DOMContentLoaded', () => {
   gerarUtmButton.addEventListener('click', gerarUTM);
   exibirHistorico();
 });
+
+
+
+
+
+ function exportarParaCSV(dados, nomeDoArquivo) {
+    if (!dados || dados.length === 0) {
+        console.warn("Nenhum dado fornecido para exportação.");
+        return;
+    }
+
+    // 1. EXTRAIR CABEÇALHOS
+    // Usa as chaves do primeiro objeto para obter os cabeçalhos das colunas
+    const cabecalhos = Object.keys(dados[0]);
+    
+    // Converte os cabeçalhos em uma linha CSV
+    const linhaCabecalhos = cabecalhos.join(',');
+
+    // 2. EXTRAIR DADOS (CONVERTER LINHAS)
+    const linhasCSV = dados.map(obj => {
+        // Para cada objeto, mapeia os valores correspondentes aos cabeçalhos
+        return cabecalhos.map(chave => {
+            let valor = obj[chave];
+            
+            // Tratamento: Garante que strings com vírgulas ou aspas sejam encapsuladas
+            // Isso previne que vírgulas dentro do texto quebrem as colunas.
+            if (typeof valor === 'string' && (valor.includes(',') || valor.includes('"') || valor.includes('\n'))) {
+                // Substitui aspas duplas por duas aspas duplas e envolve o valor em aspas
+                valor = `"${valor.replace(/"/g, '""')}"`;
+            }
+            // Converte valores booleanos para texto
+            if (typeof valor === 'boolean') {
+                valor = valor ? 'Verdadeiro' : 'Falso';
+            }
+            
+            return valor;
+        }).join(',');
+    });
+
+    // 3. CONCATENAR TUDO
+    // Junta a linha de cabeçalho com todas as linhas de dados, separadas por quebra de linha
+    const conteudoCSV = [linhaCabecalhos, ...linhasCSV].join('\n');
+
+    // 4. CRIAR E BAIXAR O ARQUIVO
+    // Cria um Blob (objeto binário) a partir da string CSV
+    // Usamos 'text/csv;charset=utf-8' para garantir que caracteres especiais funcionem
+    const blob = new Blob([conteudoCSV], { type: 'text/csv;charset=utf-8;' });
+    
+    // Cria um link temporário para iniciar o download
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', nomeDoArquivo + '.csv'); // Define o nome do arquivo
+    
+    // Dispara o clique no link e remove-o
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// const excelButton = document.querySelector('.excel_download')
+
+
+// document.addEventListener('DOMContentLoaded', function(){
+
+// excelButton.addEventListener('click', function(){
+//    const historicoGeral = JSON.parse(localStorage.getItem('historicoUTM')) || []
+//  exportarParaCSV(historicoGeral,"teste_excel")
+// })
+
+// })
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ... seu código existente para gerarUtmButton e exibirHistorico ...
+    gerarUtmButton.addEventListener('click', gerarUTM);
+    exibirHistorico();
+
+    // DELEGAÇÃO DE EVENTOS para o botão de exportar
+    document.body.addEventListener('click', function(e) {
+        // Verifica se o clique ocorreu no ícone de exportação
+        if (e.target.classList.contains('excel_download')) {
+            const historicoGeral = JSON.parse(localStorage.getItem('historicoUTM')) || [];
+            
+            if (historicoGeral.length > 0) {
+                const dataFormatada = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+                exportarParaCSV(historicoGeral, `links_utm_${dataFormatada}`);
+                
+                Swal.fire({
+                    title: 'Download CSV Concluido',
+                    icon: 'success',
+                    timer: 2000,
+                    showConfirmButton: false
+                 });
+            } else {
+                 Swal.fire({
+                    title: 'Histórico Vazio',
+                    text: "Não há links para exportar.",
+                    icon: 'info'
+                 });
+            }
+        }
+    });
+});
+
