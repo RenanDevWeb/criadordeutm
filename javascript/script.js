@@ -1,4 +1,7 @@
 const gerarUtmButton = document.querySelector('#gerarUTM');
+const dataAtual = formatarData()
+
+
 
 function gerarUTM() {
   const baseUrls = [
@@ -16,7 +19,6 @@ function gerarUTM() {
   const campaign = document.getElementById('utmCampaign').value.trim();
   const term = document.getElementById('utmTerm').value.trim();
   const content = document.getElementById('utmContent').value.trim();
-  console.log(content)
   const pmkt = document.getElementById('pmkt').value;
 
   if (baseUrls.length === 0 || !source || !medium) {
@@ -109,13 +111,53 @@ function copiarTexto(texto) {
     });
 }
 
-function salvarNoHistorico(link) {
-  let historico = JSON.parse(localStorage.getItem('historicoUTM')) || [];
-  if (!historico.includes(link)) {
-    historico.push(link);
-    localStorage.setItem('historicoUTM', JSON.stringify(historico));
-  }
+function formatarData(){
+const dateDeHoje = new Date()
+const dia = dateDeHoje.getDate();
+const mes = dateDeHoje.getMonth()
+const ano = dateDeHoje.getFullYear()
+const diaFormatado = dia
+const mesFormatado = mes + 1
+const dataFormatada = `${diaFormatado}/${mesFormatado}/${ano}`;
+return dataFormatada
 }
+
+
+
+function salvarNoHistorico(link) {
+    // Função auxiliar para gerar a data no formato dd/mm/yyyy
+  
+    let historico = JSON.parse(localStorage.getItem('historicoUTM')) || [];
+
+   
+    const linkJaExiste = historico.some(item => item.link === link);
+
+    if (!linkJaExiste) {
+        // 3. Cria um novo objeto com data e link
+        const novoRegistro = {
+            data: dataAtual,
+            link: link
+        };
+
+        historico.push(novoRegistro);
+
+        // 5. Salva o array atualizado no localStorage
+        console.log(historico);
+        localStorage.setItem('historicoUTM', JSON.stringify(historico));
+    }
+}
+
+
+
+// function salvarNoHistorico(link) {
+//   let historico = JSON.parse(localStorage.getItem('historicoUTM')) || [];
+
+//   if (!historico.includes(link)) {
+//     historico.push(dataAtual, link);
+//     console.log(historico)
+//     localStorage.setItem('historicoUTM', JSON.stringify(historico));
+//   }
+// }
 
 function exibirHistorico() {
   const historicoContainer = document.querySelector('.container-history');
@@ -131,7 +173,7 @@ function exibirHistorico() {
   } else {
     const lista = historico.reverse().map(link => `
       <div class="link-item">
-        <span class="link-copy">${link}</span>
+        <span class="link-copy">${link.link}</span>
         <span class="copy-icon" data-link="${link}" title="Copiar">📋</span>
       </div>
     `).join('');

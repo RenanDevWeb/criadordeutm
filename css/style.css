@@ -201,6 +201,9 @@ button:hover {
   width: 100%;
   transition: background-color 0.3s;
 }
+.link-copy-date{
+  font-size: 0.75rem;
+}
 
 #limparHistorico:hover {
   background-color: #990000;
