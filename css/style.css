@@ -240,6 +240,43 @@ button:hover {
   height: 80px;
 }
 
+
+/* Estilo para remover o sublinhado e configurar o link */
+.link-sugestao {
+    /* 1. Remove o sublinhado */
+    text-decoration: none; 
+    
+    /* 2. Cor do texto e ícone (Vermelho Google/Gmail) */
+    color: #DB4437; 
+    
+    /* Outros estilos de botão */
+    border: 1px solid #DB4437; 
+    border-radius: 4px; 
+    padding: 8px 15px; 
+    
+    /* Alinhamento do ícone e texto */
+    display: inline-flex;
+    align-items: center;
+    
+    /* Transição suave */
+    transition: all 0.3s ease; 
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+/* Espaçamento entre o ícone e o texto */
+.link-sugestao i {
+    margin-right: 8px;
+}
+
+/* Efeito de hover (melhoria de UX) */
+.link-sugestao:hover {
+    background-color: #DB4437; /* Fundo Vermelho */
+    color: white; /* Texto Branco */
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* Responsivo */
 @media (max-width: 720px) {
   .containers-links input {
